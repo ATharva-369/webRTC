@@ -55,6 +55,38 @@ $(function () {
         $(".right-window").css("display", "none")
         $(".header_back").css("display", "none")
     })
+    $("#stop_video").click(function(){
+        const enabled = myStream.getVideoTracks()[0].enabled;
+        if(enabled){
+            myStream.getVideoTracks()[0].enabled = false
+            html = `<i class="fas fa-video-slash"></i>`;
+            $('#stop_video').toggleClass('background_red');
+            $('#stop_video').html(html);
+        }
+        else{
+            myStream.getVideoTracks()[0].enabled = true;
+            html = `<i class="fa fa-video-camera"></i>`;
+            $('#stop_video').toggleClass('background_red');
+            $('#stop_video').html(html);
+        }
+    })
+
+    $("#mute_button").click(function(){
+        const enabled = myStream.getAudioTracks()[0].enabled;
+        if(enabled){
+            myStream.getAudioTracks()[0].enabled = false
+            html = `<i class="fas fa-microphone-slash"></i>`;
+            $('#mute_button').toggleClass('background_red');
+            $('#mute_button').html(html);
+        }
+        else{
+            myStream.getAudioTracks()[0].enabled = true;
+            html = `<i class="fa fa-microphone"></i>`;
+            $('#mute_button').toggleClass('background_red');
+            $('#mute_button').html(html);
+        }
+    })    
+
     $("#send").click(function () {
         if( $("#chat_message").val().length !== 0){
             socket.emit('message',$('#chat_message').val())
