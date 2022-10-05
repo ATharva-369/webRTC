@@ -115,7 +115,7 @@ $(function () {
                 alert("Invite sent!")
             },
             error: function (result) {
-                console.log(result.responseJSON)
+                console.log(result)
             }
         })
     })
