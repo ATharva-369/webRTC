@@ -16,13 +16,13 @@ app.use('/peerjs',PeerServer);
 
 var nodeMailer  = require('nodemailer');
 const Transporter = nodeMailer.createTransport({
-    'port':587,
-    'service':'gmail',
-    'auth':{
-        "user" : 'wedrtctest@gmail.com',
-        'pass':'vcelnatajdjevzom'
+    port:587,
+    host: "smtp.gmail.com",
+    auth:{
+        user: 'wedrtctest@gmail.com',
+        pass:'vcelnatajdjevzom'
     },
-    'secure':true
+    secure:true
 });
 
 app.get('/',(req,res)=>{
@@ -38,10 +38,10 @@ app.post('/send-mail',(req,res)=>{
     const To = req.body.to;
     const URL = req.body.url;
     const MailData = {
-        'from':'wedrtctest@gmail.com',
-        'to':To,
-        'subject':'Join the video chat with me!',
-        'html':`<p>Hello please join the video chat on => ${URL}</p>`
+        from:'wedrtctest@gmail.com',
+        to:To,
+        subject:'Join the video chat with me!',
+        html:`<p>Hello please join the video chat on => ${URL}</p>`
     };
     console.log(MailData)
     Transporter.sendMail(MailData,(err,info)=>{
