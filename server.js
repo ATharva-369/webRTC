@@ -43,6 +43,7 @@ app.post('/send-mail',(req,res)=>{
         'subject':'Join the video chat with me!',
         'html':`<p>Hello please join the video chat on => ${URL}</p>`
     };
+    console.log(MailData)
     Transporter.sendMail(MailData,(err,info)=>{
         if(err){
             return console.log(err);
