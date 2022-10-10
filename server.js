@@ -45,8 +45,8 @@ app.post('/send-mail',(req,res)=>{
     };
     Transporter.sendMail(MailData,(err,info)=>{
         if(err){
-            console.log(err);
-            res.status(404).send({message:err,message_id:info.messageId});
+            return console.log(err);
+            // res.status(404).send({message:err,message_id:info.messageId});
         }
         res.status(200).send({message:'Invitation Sent!',message_id:info.messageId});
     })
